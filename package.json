@@ -1,0 +1,32 @@
+{
+  "name": "microtranslator",
+  "version": "0.0.1",
+  "description": "A microservice to help you manage your translations",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -u tdd"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/microlib/microtranslator-nodejs.git"
+  },
+  "author": "Marco Troisi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/microlib/microtranslator-nodejs/issues"
+  },
+  "homepage": "https://github.com/microlib/microtranslator-nodejs#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-jsx-a11y": "^5.0.3",
+    "eslint-plugin-react": "^7.0.1",
+    "mocha": "^3.4.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "ramda": "^0.23.0"
+  }
+}
