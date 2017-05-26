@@ -2,4 +2,4 @@
 
 A nodejs port of the *Microtranslator* microservice
 
-![Circle CI](https://circleci.com/gh/:owner/:repo.png?circle-token=:circle-token)
+![Circle CI](https://circleci.com/gh/microlib/microtranslator-nodejs.png?circle-token=:circle-token)
