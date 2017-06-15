@@ -11,7 +11,11 @@ const Words = DB => ({
    * @param {string} [word] - The word needed (e.g. 'Hello')
    * @return {string}
    */
-  get: (locale = 'en', word = '') => ('Buongiorno'),
+  get: (locale = 'en', word = '') => {
+    const getAll = () => [{ Howdy: 'Salve' }, { 'Good morning': 'Buongiorno' }];
+    const getOne = word => [{ 'Good morning': 'Buongiorno' }];
+    return (word === '') ? getAll() : getOne(word);
+  },
   /**
    * Counts all words
    * @memberof Words
@@ -24,5 +28,7 @@ const Words = DB => ({
     return 1;
   },
 });
+
+// const getAll()
 
 module.exports = Words;
