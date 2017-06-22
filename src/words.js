@@ -1,6 +1,8 @@
 /**
  * Locale function
+ *
  * @param {Object=} DB
+ * @return {Object[]}
  */
 const Words = DB => ({
   /**
@@ -12,8 +14,8 @@ const Words = DB => ({
    * @return {string}
    */
   get: (locale = 'en', word = '') => {
-    const getAll = () => [{ Howdy: 'Salve' }, { 'Good morning': 'Buongiorno' }];
-    const getOne = word => [{ 'Good morning': 'Buongiorno' }];
+    const getAll = () => [{'Howdy': 'Salve'}, {'Good morning': 'Buongiorno'}];
+    const getOne = word => [{'Good morning': 'Buongiorno'}];
     return (word === '') ? getAll() : getOne(word);
   },
   /**

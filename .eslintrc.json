@@ -12,7 +12,7 @@
         },
         "sourceType": "module"
     },
-    "extends": "airbnb",
+    "extends": "google",
     "rules": {
         "no-const-assign": "warn",
         "no-this-before-super": "warn",
