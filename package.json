@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.4",
+    "mongodb": "^2.2.29",
     "ramda": "^0.23.0"
   }
 }
