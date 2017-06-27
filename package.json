@@ -26,6 +26,7 @@
     "mocha": "^3.4.1"
   },
   "dependencies": {
+    "asyncawait": "^1.0.6",
     "lodash": "^4.17.4",
     "mongodb": "^2.2.29",
     "ramda": "^0.23.0"
