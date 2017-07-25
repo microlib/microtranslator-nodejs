@@ -27,7 +27,9 @@
   },
   "dependencies": {
     "asyncawait": "^1.0.6",
+    "bluebird": "^3.5.0",
     "lodash": "^4.17.4",
+    "mongo-mock": "^2.4.1",
     "mongodb": "^2.2.29",
     "ramda": "^0.23.0"
   }
