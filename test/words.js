@@ -1,14 +1,24 @@
 const assert = require('assert');
 const words = require('../src/words');
+const proxyquire = require('proxyquire');
 
 suite('Words', () => {
   suite('Get (1 word)', () => {
     test('should return the word "Buongiorno"', () => {
-      const w = words();
-      assert.deepEqual(
-          w.get('it', 'Good morning'),
-          [{'Good morning': 'Buongiorno'}]
-      );
+      const w = proxyquire('../src/words', {
+        'src/DB': () => {
+          return {
+            readTranslation: (word, locale) => (Promise.resolve('buongiorno'))
+          };
+        },
+      })();
+
+      return w.get('it', 'Good morning').then((res) => {
+        assert.deepEqual(
+            res,
+            [{'Good morning': 'Buongiorno'}]
+        );
+      });
     });
     test('should be an array of objects', () => {
       const w = words();
