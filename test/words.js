@@ -8,7 +8,13 @@ suite('Words', () => {
       const w = proxyquire('../src/words', {
         'src/DB': () => {
           return {
-            readTranslation: (word, locale) => (Promise.resolve('buongiorno'))
+            readTranslation: (word, locale) => (
+                Promise.resolve([{
+                  word: 'Good morning',
+                  translation: 'Buongiorno',
+                  locale: 'it_IT',
+                }])
+            ),
           };
         },
       })();
@@ -16,14 +22,27 @@ suite('Words', () => {
       return w.get('it', 'Good morning').then((res) => {
         assert.deepEqual(
             res,
-            [{'Good morning': 'Buongiorno'}]
+            [{word: 'Good morning', translation: 'Buongiorno', locale: 'it_IT'}]
         );
       });
     });
-    test('should be an array of objects', () => {
-      const w = words();
-      assert.ok(Array.isArray(w.get('it', 'Good morning')));
-      assert.ok(typeof w.get('it', 'Good morning')[0] === 'object');
+    test('should be an object', () => {
+      const w = proxyquire('../src/words', {
+        'src/DB': () => {
+          return {
+            readTranslation: (word, locale) => (
+                Promise.resolve([{
+                  word: 'Good morning',
+                  translation: 'Buongiorno',
+                  locale: 'it_IT',
+                }])
+            ),
+          };
+        },
+      })();
+      return w.get('it', 'Good morning').then((res) => {
+        assert.ok(typeof res === 'object');
+      });
     });
   });
 
