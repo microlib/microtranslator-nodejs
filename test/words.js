@@ -47,13 +47,44 @@ suite('Words', () => {
   });
 
   suite('Get (many words)', () => {
-    test('should return the words "Buongiorno" and "Salve"', () => {
-      const w = words();
-      const wordsList = w.get('it');
-      assert.deepEqual(
-          wordsList,
-          [{'Howdy': 'Salve'}, {'Good morning': 'Buongiorno'}]
-      );
+    test.only('should return multiple words', () => {
+      const w = proxyquire('../src/words', {
+        'src/DB': () => {
+          return {
+            readTranslations: (locale) => (
+                Promise.resolve([
+                  {
+                    word: 'Good morning',
+                    translation: 'Buongiorno',
+                    locale: 'it_IT',
+                  },
+                  {
+                    word: 'Hello',
+                    translation: 'Ciao',
+                    locale: 'it_IT',
+                  },
+                ])
+            ),
+          };
+        },
+      })();
+      return w.get('it_IT').then((res) => {
+        assert.deepEqual(
+            res,
+            [
+              {
+                word: 'Good morning',
+                translation: 'Buongiorno',
+                locale: 'it_IT',
+              },
+              {
+                word: 'Hello',
+                translation: 'Ciao',
+                locale: 'it_IT',
+              },
+            ]
+        );
+      });
     });
     test('should be an array of 2 objects', () => {
       const w = words();

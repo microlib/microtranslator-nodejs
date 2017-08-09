@@ -17,9 +17,11 @@ const Words = context => {
      * @return {string}
      */
     get: (locale = 'en', word = '') => {
-      const getAll = () => [{'Howdy': 'Salve'}, {'Good morning': 'Buongiorno'}];
+      const getAll = () => {
+        return DB.readTranslations(locale);
+      };
       const getOne = word => {
-        return DB.readTranslation(word, locale).then((res) => (res));
+        return DB.readTranslation(word, locale);
       };
       return (word === '') ? getAll() : getOne(word);
     },
