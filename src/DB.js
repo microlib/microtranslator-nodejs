@@ -33,5 +33,10 @@ module.exports = function(context) {
         });
       });
     },
+    readTranslations: function(locale) {
+      return connect().then((db) => {
+        return db.collection('translations').find({locale});
+      });
+    },
   };
 };

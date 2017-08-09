@@ -9,11 +9,11 @@ suite('Words', () => {
         'src/DB': () => {
           return {
             readTranslation: (word, locale) => (
-                Promise.resolve([{
+                Promise.resolve({
                   word: 'Good morning',
                   translation: 'Buongiorno',
                   locale: 'it_IT',
-                }])
+                })
             ),
           };
         },
@@ -22,7 +22,7 @@ suite('Words', () => {
       return w.get('it', 'Good morning').then((res) => {
         assert.deepEqual(
             res,
-            [{word: 'Good morning', translation: 'Buongiorno', locale: 'it_IT'}]
+            {word: 'Good morning', translation: 'Buongiorno', locale: 'it_IT'}
         );
       });
     });
@@ -31,11 +31,11 @@ suite('Words', () => {
         'src/DB': () => {
           return {
             readTranslation: (word, locale) => (
-                Promise.resolve([{
+                Promise.resolve({
                   word: 'Good morning',
                   translation: 'Buongiorno',
                   locale: 'it_IT',
-                }])
+                })
             ),
           };
         },
