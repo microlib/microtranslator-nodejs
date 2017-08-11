@@ -47,7 +47,7 @@ suite('Words', () => {
   });
 
   suite('Get (many words)', () => {
-    test.only('should return multiple words', () => {
+    test('should return multiple words', () => {
       const w = proxyquire('../src/words', {
         'src/DB': () => {
           return {
@@ -87,10 +87,30 @@ suite('Words', () => {
       });
     });
     test('should be an array of 2 objects', () => {
-      const w = words();
-      const wordsList = w.get('it');
-      assert.ok(Array.isArray(wordsList));
-      assert(wordsList.length === 2, 'The array should contain two objects');
+      const w = proxyquire('../src/words', {
+        'src/DB': () => {
+          return {
+            readTranslations: (locale) => (
+                Promise.resolve([
+                  {
+                    word: 'Good morning',
+                    translation: 'Buongiorno',
+                    locale: 'it_IT',
+                  },
+                  {
+                    word: 'Hello',
+                    translation: 'Ciao',
+                    locale: 'it_IT',
+                  },
+                ])
+            ),
+          };
+        },
+      })();
+      return w.get('it_IT').then((res) => {
+        assert.ok(Array.isArray(res));
+        assert(res.length === 2, 'The array should contain two objects');
+      });
     });
   });
 
